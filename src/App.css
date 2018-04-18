@@ -23,7 +23,7 @@
 }
 
 .dropdowns >div {
-  padding: 0 10px;
+  padding: 0 10px 8px 10px;
 }
 
 select {
@@ -40,16 +40,19 @@ select {
   font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin: 18px;
 }
 
 .visualization {
-  margin: 15px 15px 15px 30px;
+  margin: 30px;
 }
 
 .mini-row {
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 1px 0;
+  border-style: dashed;
 }
 
 .mini-row:last-child {
@@ -71,6 +74,7 @@ select {
 .mini-row >div {
   width: 33.3%;
   min-width: 33.3%;
+  padding: 0 5px;
 }
 
 .category-text {
@@ -80,16 +84,19 @@ select {
 }
 
 .mini-legend .legend-contents {
-  margin: 5px;
   text-align: left;
-  padding-left: 25px;
+  width: 98%;
 }
 
 .legend-row {
   cursor: pointer;
 }
 .legend-row:hover {
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+.legend-contents {
+  font-size: 14px;
 }
 
 .legend-contents svg {
@@ -104,6 +111,16 @@ select {
 .legend-contents span.legend-percent {
   font-weight: 300;
   margin-left: 8px;
+  font-size: 14px;
+}
+
+.legend-contents .number {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 16px;
+}
+
+td {
+  padding: 1px 0;
 }
 
 .mini-graph circle {

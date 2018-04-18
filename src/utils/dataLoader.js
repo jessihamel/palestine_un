@@ -1,6 +1,6 @@
 import { csv } from 'd3-fetch'
 import { nest } from 'd3-collection'
-import { getColorFromIndex, getNullColor } from '../utils/colors'
+import { getColorFromIndex } from '../utils/colors'
 
 import adolescentGirlsData from '../data/adolescentGirls.csv'
 import childrenInLaborData from '../data/childrenInLabor.csv'
@@ -55,10 +55,8 @@ class DataLoader {
               .entries(d.data)
             // add colors
             nested
-              // .filter(d => d.key !== 'null')
               .sort((a, b) => b.values.length - a.values.length)
               .forEach((d, i) => d.color = getColorFromIndex(i))
-            nested.forEach(d => d.color = d.color || getNullColor())
             // sort by nValues
             nested = nested.sort((a, b) => b.values.length - a.values.length)
             return {

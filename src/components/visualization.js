@@ -7,7 +7,6 @@ export default class Visualization extends React.Component {
     if (!this.props.selectedDataset) {
       return null
     }
-    console.log(this.props)
     return (
       this.props.selectedDataset.nestedArray.map(topic => {
         const filtered = dataLoader.filterNested(topic.nested, this.props.selectedFilter)
@@ -31,6 +30,7 @@ export default class Visualization extends React.Component {
   render() {
     return (
       <div className='visualization'>
+        <GraphMiniRow data={null} />
         {this.renderMiniGraphs()}
       </div>
     );

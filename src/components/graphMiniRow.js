@@ -2,8 +2,8 @@ import React from 'react';
 import GraphMini from './graphMini'
 
 export default class GraphMiniRow extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       width: 0,
     }
@@ -12,8 +12,10 @@ export default class GraphMiniRow extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.setWidth)
-    requestAnimationFrame(this.setWidth)
+    if (this.props.data) {
+      window.addEventListener('resize', this.setWidth)
+      requestAnimationFrame(this.setWidth)
+    }
   }
 
   componentWillUnmount() {
@@ -33,38 +35,64 @@ export default class GraphMiniRow extends React.Component {
       .map((d, i) => {
         const filterSlug = `${this.props.data.topicData.key} - ${d.key}`
         const percentValue = Math.round((d.values.length / groupLength) * 100)
-        const percentString = percentValue === 0 ? '< 0.5' : percentValue
+        const percentString = percentValue === 0 ? '<0.5' : percentValue
         const filteredLength = this.props.filtered[i].values.length
         const filteredPercent = Math.round((filteredLength / this.props.filteredLength) * 100)
-        const filteredPercentString = filteredLength !== 0 && filteredPercent === 0 ? '< 0.5' : filteredPercent
+        const filteredPercentString = filteredLength !== 0 && filteredPercent === 0 ? '<0.5' : filteredPercent
         return (
-          <div
+          <tr
             key={`${i}-${d.key}`}
             className='legend-row'
             onClick={this.props.changeFilter.bind(this, filterSlug)}
           >
-            <svg width='14' height='14'>
-              <circle
-                cx='7'
-                cy='7'
-                r='7'
-                fill={d.color}
-              />
-            </svg>
-            <span>
+            <td style={{width: '40%'}}>
+              <svg width='12' height='12'>
+                <circle
+                  cx='6'
+                  cy='6'
+                  r='6'
+                  fill={d.color}
+                />
+              </svg>
               <span className='legend-key'>
                 {d.key === 'null' ? 'No Data / Null' : d.key}
               </span>
+            </td>
+            <td style={{width: '30%', textAlign: 'right'}}>
               <span className='legend-percent'>
-                ({percentString} % <span className='bold'>|</span> {filteredPercentString} %
-              </span>)
-            </span>
-          </div>
+                <span className='number'>{filteredPercentString}</span> %
+              </span>
+            </td>
+            <td style={{width: '30%', textAlign: 'right'}}>
+              <span className='legend-percent'>
+                <span className='number'>{percentString}</span> %
+              </span>
+            </td>
+          </tr>
         )
       })
   }
 
   render() {
+    if (!this.props.data) {
+      return (
+        <div className='mini-row'>
+          <div className='mini-category'></div>
+          <div className='mini-graph'></div>
+          <div className='mini-legend'>
+            <table className='legend-contents legend-header'>
+              <tbody>
+                <tr>
+                  <td style={{width: '40%'}}></td>
+                  <td style={{width: '30%', textAlign: 'right', paddingLeft: '2px'}}>Percent of filtered</td>
+                  <td style={{width: '30%',textAlign: 'right', paddingLeft: '2px'}}>Percent of total</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className='mini-row'>
         <div className='mini-category'>
@@ -85,9 +113,11 @@ export default class GraphMiniRow extends React.Component {
           />
         </div>
         <div className='mini-legend'>
-          <div className='legend-contents'>
-            {this.renderLegend()}
-          </div>
+          <table className='legend-contents'>
+            <tbody>
+              {this.renderLegend()}
+            </tbody>
+          </table>
         </div>
       </div>
     );
