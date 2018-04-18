@@ -10,7 +10,7 @@
 .header-menu {
   position: fixed;
   top: 0;
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.94);
   width: 100%;
   padding-bottom: 15px;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
@@ -59,18 +59,6 @@ select {
   border-bottom: none;
 }
 
-/* .mini-row .mini-category {
-  width: 25%
-}
-
-.mini-row .mini-graph {
-  width: 35%;
-}
-
-.mini-row .mini-legend {
-  width: 40%;
-} */
-
 .mini-row >div {
   width: 33.3%;
   min-width: 33.3%;
@@ -83,6 +71,19 @@ select {
   font-weight: 600;
 }
 
+.legend-header {
+  border-bottom: none;
+}
+
+.legend-header .legend-header-row {
+  display: table-row;
+  font-weight: 300;
+}
+
+.legend-header-row {
+  display: none;
+}
+
 .mini-legend .legend-contents {
   text-align: left;
   width: 98%;
@@ -91,6 +92,7 @@ select {
 .legend-row {
   cursor: pointer;
 }
+
 .legend-row:hover {
   opacity: 0.7;
 }
@@ -135,4 +137,27 @@ td {
 
 a, a:visited {
   color: #C74B36;
+}
+
+@media only screen and (max-width: 690px) {
+  .App-title {
+    font-size: 1.3em;
+  }
+  .dropdowns {
+    flex-wrap: wrap;
+  }
+  .mini-row {
+    flex-wrap: wrap;
+  }
+  .mini-row >div {
+    width: 100%;
+    min-width: 100%;
+    padding: 10px 0px;
+  }
+  .legend-header {
+    display: none;
+  }
+  .legend-header-row {
+    display: table-row;
+  }
 }

@@ -73,21 +73,25 @@ export default class GraphMiniRow extends React.Component {
       })
   }
 
+  renderLegendHeaderRow() {
+    return (
+      <tr className='legend-header-row'>
+        <td style={{width: '30%'}}></td>
+        <td style={{width: '40%', textAlign: 'right', paddingLeft: '4px'}}>Percent of filtered</td>
+        <td style={{width: '30%',textAlign: 'right', paddingLeft: '4px'}}>Percent of total</td>
+      </tr>
+    )
+  }
+
   render() {
     if (!this.props.data) {
       return (
-        <div className='mini-row'>
+        <div className='mini-row legend-header'>
           <div className='mini-category'></div>
           <div className='mini-graph'></div>
           <div className='mini-legend'>
-            <table className='legend-contents legend-header'>
-              <tbody>
-                <tr>
-                  <td style={{width: '40%'}}></td>
-                  <td style={{width: '30%', textAlign: 'right', paddingLeft: '2px'}}>Percent of filtered</td>
-                  <td style={{width: '30%',textAlign: 'right', paddingLeft: '2px'}}>Percent of total</td>
-                </tr>
-              </tbody>
+            <table className='legend-contents'>
+              <tbody>{this.renderLegendHeaderRow()}</tbody>
             </table>
           </div>
         </div>
@@ -115,6 +119,7 @@ export default class GraphMiniRow extends React.Component {
         <div className='mini-legend'>
           <table className='legend-contents'>
             <tbody>
+              {this.renderLegendHeaderRow()}
               {this.renderLegend()}
             </tbody>
           </table>

@@ -48,7 +48,7 @@ export default class GraphMini extends React.Component {
           cx={this.xScale(d.key)}
           cy={this.innerHeight / 2}
           fill={d.color}
-          opacity={0.35}
+          opacity={0.3}
           stroke='#F9F8F8'
           strokeWidth='2px'
           onClick={this.props.changeFilter.bind(this, filterSlug)}

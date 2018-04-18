@@ -25,7 +25,6 @@ class App extends Component {
     dataLoader.loadData().then(() => {
       this.init()
     })
-    this.setHeight()
   }
 
   onResize() {
@@ -33,15 +32,17 @@ class App extends Component {
   }
 
   setHeight() {
-    const headerHeight = Math.ceil(this.headerRef.current.clientHeight)
-    this.setState({headerHeight})
+    window.requestAnimationFrame(() => {
+      const headerHeight = Math.ceil(this.headerRef.current.clientHeight)
+      this.setState({headerHeight})
+    })
   }
 
   init() {
     const data = dataLoader.getData()
     const selectedGroup = data[0].key
     const selectedDataset = dataLoader.getGroupDataset(selectedGroup)
-    this.setState({selectedGroup, selectedDataset, data})
+    this.setState({selectedGroup, selectedDataset, data}, this.setHeight)
   }
 
   changeDataset(event) {
@@ -116,7 +117,7 @@ class App extends Component {
         </div>
         <div className='about'>
           <div>Data provided by the United Nations Special Coordinator&#39;s Office for the Middle East Peace Process</div>
-          <div>Visualization created by <a href='www.jessihamel.com'>Jessica Hamel</a> for <a href='www.vizforsocialgood.com/'>Viz for Social Good</a>. More about the project can be found <a href='www.vizforsocialgood.com/join-a-project/2018/3/22/unsco'>here</a>.</div>
+          <div>Visualization created by <a href='http://www.jessihamel.com'>Jessica Hamel</a> for <a href='http://www.vizforsocialgood.com/'>Viz for Social Good</a>. More about the project can be found <a href='http://www.vizforsocialgood.com/join-a-project/2018/3/22/unsco'>here</a>.</div>
         </div>
       </div>
     );
