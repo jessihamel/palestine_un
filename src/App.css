@@ -7,6 +7,13 @@
   margin-bottom: 20px;
 }
 
+.App-title {
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 18px;
+}
+
 .header-menu {
   position: fixed;
   top: 0;
@@ -34,13 +41,6 @@ select {
   font-size: 1.1em;
   margin-right: 6px;
   font-weight: 300;
-}
-
-.App-title {
-  font-size: 2em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 18px;
 }
 
 .visualization {
@@ -140,11 +140,18 @@ a, a:visited {
 }
 
 @media only screen and (max-width: 690px) {
+  .header-menu {
+    padding-bottom: 5px;
+  }
   .App-title {
     font-size: 1.3em;
+    margin-bottom: 10px;
   }
   .dropdowns {
     flex-wrap: wrap;
+  }
+  .dropdown-header {
+    font-size: 1em;
   }
   .mini-row {
     flex-wrap: wrap;

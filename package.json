@@ -2,6 +2,8 @@
   "name": "palestine_un",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jessihamel.github.io/palestine_un",
+  "license": "MIT",
   "dependencies": {
     "core-js": "^2.5.5",
     "d3-array": "^1.2.1",
@@ -18,6 +20,8 @@
     "react-spring": "^4.1.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
